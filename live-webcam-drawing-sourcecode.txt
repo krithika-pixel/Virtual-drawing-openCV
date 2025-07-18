@@ -5,17 +5,17 @@
 import cv2
 import numpy as np
 
-# Set frame dimensions
+
 frameWidth = 640
 frameHeight = 480
 
-# Start webcam capture
-cap = cv2.VideoCapture(1)  # Try 0 if 1 doesn't work
+
+cap = cv2.VideoCapture(1)  
 cap.set(3, frameWidth)
 cap.set(4, frameHeight)
-cap.set(10, 150)  # Brightness
+cap.set(10, 150)  
 
-# HSV color ranges: [Hmin, Smin, Vmin, Hmax, Smax, Vmax]
+
 myColors = [
     [5, 107, 0, 19, 255, 255],     # Orange
     [133, 56, 0, 159, 156, 255],   # Pink
@@ -23,7 +23,7 @@ myColors = [
     [90, 48, 0, 118, 255, 255]     # Blue
 ]
 
-# Corresponding BGR colors to draw with
+
 myColorValues = [
     [51, 153, 255],    # Orange
     [255, 0, 255],     # Pink
@@ -31,7 +31,7 @@ myColorValues = [
     [255, 0, 0]        # Blue
 ]
 
-# Store drawn points: [x, y, colorId]
+
 myPoints = []
 
 
@@ -69,7 +69,7 @@ def drawOnCanvas(myPoints, myColorValues):
         cv2.circle(imgResult, (point[0], point[1]), 10, myColorValues[point[2]], cv2.FILLED)
 
 
-# Main loop
+
 while True:
     success, img = cap.read()
     imgResult = img.copy()
@@ -87,6 +87,6 @@ while True:
     if cv2.waitKey(1) & 0xFF == 27:  # ESC key to exit
         break
 
-# Release and destroy everything
+
 cap.release()
 cv2.destroyAllWindows()
